@@ -13,19 +13,19 @@ name:                currency-convert
 version:             0.1.0.0
 
 -- A short (one-line) description of the package.
-synopsis:            A typesafe way to convert between currencies, with various source of conversion rates.
+synopsis:            Typesafe currency conversion
 
 -- A longer description of the package.
--- description:         
+description:         A typesafe currency conversion system with a various exchange rate sources for over 30 currencies.
 
 -- URL for the project homepage or repository.
 homepage:            pigworts2.github.io/currency-convert
 
 -- The license under which the package is released.
-license:             CC-BY-SA
+license:             BSD3
 
 -- The file containing the license text.
-license-file:        LICENSE
+--license-file:        LICENSE
 
 -- The package author(s).
 author:              Tuomas Laakkonen
