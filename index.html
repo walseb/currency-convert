@@ -1,0 +1,119 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/github-dark.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>currency-convert</title>
+  <meta name="description" content="A type-safe currency conversion library for Haskell.">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">currency-convert</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">A type-safe currency conversion library for Haskell.</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/tuomas56/currency-convert/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/tuomas56/currency-convert/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/tuomas56/currency-convert" class="code">View currency-convert on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a id="currency-convert" class="anchor" href="#currency-convert" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>currency-convert</h1>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Module</td>
+<td>Data.Currency.Convert</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Typesafe currency coversion using exchange rates from various sources.</td>
+</tr>
+<tr>
+<td>Copyright</td>
+<td>© Tuomas Laakkonen 2016</td>
+</tr>
+<tr>
+<td>License</td>
+<td>BSD3</td>
+</tr>
+<tr>
+<td>Maintainer</td>
+<td><a href="mailto:pigworts2@gmail.com">pigworts2@gmail.com</a></td>
+</tr>
+<tr>
+<td>Stability</td>
+<td>Experimental</td>
+</tr>
+<tr>
+<td>Portability</td>
+<td>Non-portable (GHC extensions)</td>
+</tr>
+</tbody>
+</table>
+
+<p>This module allows values of currency to be converted from one currency to another using exchange rates from various sources.</p>
+
+<p>The basic operation for this module is as follows:</p>
+
+<p>First, get a conversion function (with <code>getDefaultConverter</code> or <code>getConverter</code>):</p>
+
+<div class="highlight highlight-source-haskell"><pre>    <span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-c1">Converter</span> convert <span class="pl-k">&lt;-</span> getDefaultConverter</pre></div>
+
+<p>Then, construct some value of currency using the convenience functions, and convert it using the convert function you just got:</p>
+
+<div class="highlight highlight-source-haskell"><pre>    <span class="pl-k">&gt;&gt;&gt;</span> convert (usd <span class="pl-c1">100</span>) <span class="pl-k">::</span> <span class="pl-c1">EUR</span>
+    <span class="pl-c1">90.0</span> eur</pre></div>
+
+<p>The result type of <code>convert</code> defines what currency the value will be converted into.</p>
+
+<p><code>Currency</code> implements <code>Num</code>, <code>Fractional</code> and <code>Real</code> so the usual arithmetic operations are defined, and its value can be extracted with <code>toRational</code>.</p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/tuomas56" class="avatar"><img src="https://avatars0.githubusercontent.com/u/4346030?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/tuomas56">tuomas56</a> maintains <a href="https://github.com/tuomas56/currency-convert">currency-convert</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/tuomas56/currency-convert/tarball/master" class="tar">tar</a><a href="https://github.com/tuomas56/currency-convert/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
