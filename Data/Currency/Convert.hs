@@ -35,6 +35,7 @@ module Data.Currency.Convert (
   getConverter,
   getDefaultConverter,
   unsafeCoerceCurrency,
+  pprint,
   Currency(),
   RateProvider(..),
   RateDict(..),
