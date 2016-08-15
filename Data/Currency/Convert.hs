@@ -126,10 +126,17 @@ import Debug.Trace
     To extract the value from a @'Currency'@ value, use @toRational@ from @Real@.
 -}
 data Currency (s :: Symbol) = Currency Double
-    deriving (Eq, Ord)
+    deriving (Eq, Ord, Show, Read)
 
-instance KnownSymbol s => Show (Currency s) where
-    show (Currency v) = show v ++ " " ++ symbolVal (SProxy :: SProxy s)
+
+{-|
+    @'pprint'@ renders the value the provided currency and its three letter code to a string.
+
+    >>> pprint (usd 10)
+    10 usd
+-}
+pprint :: forall s. KnownSymbol s => Currency s -> String
+pprint (Currency v) = show v ++ " " ++ symbolVal (SProxy :: SProxy s)
 
 instance Num (Currency a) where
     Currency a + Currency b = Currency $ a + b

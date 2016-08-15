@@ -19,7 +19,7 @@ synopsis:            Typesafe currency conversion
 description:         A typesafe currency conversion system with a various exchange rate sources for over 30 currencies.
 
 -- URL for the project homepage or repository.
-homepage:            pigworts2.github.io/currency-convert
+homepage:            http://tuomas56.github.io/currency-convert
 
 -- The license under which the package is released.
 license:             BSD3
