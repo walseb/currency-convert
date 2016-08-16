@@ -1,4 +1,5 @@
-{-# LANGUAGE DataKinds, 
+{-# LANGUAGE DataKinds,
+             PolyKinds,
              KindSignatures,
              ScopedTypeVariables,
              RankNTypes,
@@ -35,7 +36,6 @@ module Data.Currency.Convert (
   getConverter,
   getDefaultConverter,
   unsafeCoerceCurrency,
-  pprint,
   Currency(),
   RateProvider(..),
   RateDict(..),
@@ -112,13 +112,13 @@ module Data.Currency.Convert (
 ) where
 
 import GHC.TypeLits
-import Network.HTTP.Simple
+import Network.HTTP.Simple hiding (Proxy(..))
 import qualified Data.HashMap.Strict as HS
 import qualified Data.Text as T
 import Data.Aeson
+import Data.Proxy
 import Control.Applicative
 import qualified Control.Exception as E
-import Debug.Trace
 
 {-|
     @'Currency'@ is a wrapper around @Double@ that has a phantom symbol type, 
@@ -127,17 +127,18 @@ import Debug.Trace
     To extract the value from a @'Currency'@ value, use @toRational@ from @Real@.
 -}
 data Currency (s :: Symbol) = Currency Double
-    deriving (Eq, Ord, Show, Read)
+    deriving (Eq, Ord)
 
 
-{-|
-    @'pprint'@ renders the value the provided currency and its three letter code to a string.
+instance KnownSymbol s => Show (Currency s) where
+    show (Currency val) = symbolVal (Proxy :: Proxy s) ++ " " ++ show val
 
-    >>> pprint (usd 10)
-    10 usd
--}
-pprint :: forall s. KnownSymbol s => Currency s -> String
-pprint (Currency v) = show v ++ " " ++ symbolVal (SProxy :: SProxy s)
+instance Read (Currency a) where
+    readsPrec _ s = let (currency : value : rest) = words s in
+                    let n :: Proxy s 
+                        n = case someSymbolVal currency of
+                                SomeSymbol n' -> n
+                    in [((Currency (read value) :: Currency s), unwords rest)]
 
 instance Num (Currency a) where
     Currency a + Currency b = Currency $ a + b
@@ -156,8 +157,6 @@ instance Real (Currency a) where
 
 instance RealFrac (Currency a) where
     properFraction (Currency a) = let (a', b') = properFraction a in (a', Currency b')
-
-data SProxy (s :: Symbol) = SProxy
 
 -- | The Australian Dollar
 type AUD = Currency "aud"
@@ -466,8 +465,8 @@ defaultProvider = fixerIOProvider <|-|> backupProvider
 
 convert :: forall a b. (KnownSymbol a, KnownSymbol b, ?dict :: [(String, Double)], ?name :: String) 
            => Currency a -> Currency b
-convert (Currency a) = let as = symbolVal (SProxy :: SProxy a) 
-                           bs = symbolVal (SProxy :: SProxy b) in
+convert (Currency a) = let as = symbolVal (Proxy :: Proxy a) 
+                           bs = symbolVal (Proxy :: Proxy b) in
                        case lookup as ?dict of
                            Just aRate -> let eurVal = a / aRate in
                                case lookup bs ?dict of
